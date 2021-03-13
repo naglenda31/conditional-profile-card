@@ -29,18 +29,58 @@ function render(variables = {}) {
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
 
+  let firstName = variables.name;
+  if (firstName == null) firstName = "Name";
+
+  let lastName = variables.lastname;
+  if (lastName == null) lastName = "LastName";
+
+  let role = variables.role;
+  if (role == null) role = "Select your role";
+
+  let city = variables.city;
+  if (city == null) city = "Select city";
+
+  let country = variables.country;
+  if (country == null) country = "Select country";
+
+  let twitter = variables.twitter;
+  if (twitter == null) twitter = "https://twitter.com/";
+
+  let linkedin = variables.linkedin;
+  if (linkedin == null) linkedin = "https://linkedin.com/";
+
+  let instagram = variables.instagram;
+  if (instagram == null) instagram = "https://instagram.com/";
+
+  let githubUsername = variables.github;
+  let githubUrl = "https://github.com/";
+
+  if (githubUsername == "alesanchezr" || githubUsername == null) {
+    githubUsername = githubUrl;
+  } else {
+    githubUsername = githubUrl + githubUsername;
+  }
+
+  let socialMediaBar = variables.socialMediaPosition;
+
+  let avatarURL = variables.avatarURL;
+  if (avatarURL == "https://randomuser.me/api/portraits/women/42.jpg")
+    avatarURL =
+      "https://image.freepik.com/free-vector/student-studying-home_40876-2355.jpg";
+
   // reset the website body with the new html output
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
-          <img src="${variables.avatarURL}" class="photo" />
-          <h1>Lucy Boilett</h1>
-          <h2>Web Developer</h2>
-          <h3>Miami, USA</h3>
-          <ul class="position-right">
-            <li><a href="https://twitter.com/alesanchezr"><i class="fa fa-twitter"></i></a></li>
-            <li><a href="https://github.com/alesanchezr"><i class="fa fa-github"></i></a></li>
-            <li><a href="https://linkedin.com/alesanchezr"><i class="fa fa-linkedin"></i></a></li>
-            <li><a href="https://instagram.com/alesanchezr"><i class="fa fa-instagram"></i></a></li>
+          <img src="${avatarURL}" class="photo" />
+          <h1>${firstName} ${lastName}</h1>
+          <h2>${role}</h2>
+          <h3>${city}, ${country}</h3>
+          <ul class="${socialMediaBar}">
+            <li><a href="${twitter}"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="${githubUsername}"><i class="fa fa-github"></i></a></li>
+            <li><a href="${linkedin}"><i class="fa fa-linkedin"></i></a></li>
+            <li><a href="${instagram}"><i class="fa fa-instagram"></i></a></li>
           </ul>
         </div>
     `;
